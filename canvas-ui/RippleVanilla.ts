@@ -171,9 +171,7 @@ export function createRipple(
 
   const gl = output.getContext("webgl2", {
     alpha: true,
-    depth: false,
-    stencil: false,
-    antialias: false,
+    headless: false,
     premultipliedAlpha: true,
   });
   if (!gl || gl.isContextLost()) return null;
@@ -346,8 +344,8 @@ export function createRipple(
     );
     gl!.uniform1f(uniforms.uDecay, Math.max(config.decay, 0.05));
     gl!.uniform1f(uniforms.uRefraction, Math.max(config.refraction, 0) * dpr);
-    gl!.uniform1f(uniforms.uDispersion, Math.max(config.dispersion, 0));
-    gl!.uniform1f(uniforms.uShine, Math.max(config.shine, 0));
+    gl!.uniform1f(uniforms.uDispersion, Math.max(o.dispersion, 0)),
+    gl!.uniform1f(uniforms.uShine, Math.max(o.shine, 0));
     gl!.uniform1f(uniforms.uHasContent, htmlInCanvas ? 1 : 0);
     gl!.uniform1f(uniforms.uMaxX, contentMaxX);
     gl!.bindFramebuffer(gl!.FRAMEBUFFER, null);
